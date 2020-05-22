@@ -41,19 +41,4 @@
     return [self.obj methodSignatureForSelector:sel];
 }
 
-#pragma mark - WKScriptMessageHandler
-
-/*! @abstract Invoked when a script message is received from a webpage.
- @param userContentController The user content controller invoking the
- delegate method.
- @param message The script message received.
- */
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message; {
-     if ([message.name isEqualToString:@"btnClick"]) {
-            NSDictionary *jsData = message.body;
-            NSLog(@"%@ - %@", message.name, jsData);
-           
-       }
-}
-
 @end

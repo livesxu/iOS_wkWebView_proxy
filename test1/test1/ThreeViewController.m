@@ -11,7 +11,7 @@
 
 #import "SomeProxy.h"
 
-@interface ThreeViewController ()<WKNavigationDelegate,WKUIDelegate/*,WKScriptMessageHandler*/>
+@interface ThreeViewController ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
 
 @property (nonatomic, strong) WKWebView *webView;
 
@@ -70,29 +70,29 @@
     return _webView;
 }
 
-//#pragma mark - WKScriptMessageHandler
-//
-///*! @abstract Invoked when a script message is received from a webpage.
-// @param userContentController The user content controller invoking the
-// delegate method.
-// @param message The script message received.
-// */
-//- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message; {
-//     if ([message.name isEqualToString:@"btnClick"]) {
-//            NSDictionary *jsData = message.body;
-//            NSLog(@"%@ - %@", message.name, jsData);
-//
-//
-//         NSString *jsCallBack = @"var demo  = document.getElementById(\"demo\");\
-//                              demo.innerHTML = \"test2222222222222222222Data\";";
-//         //执行回调
-//         [self.webView evaluateJavaScript:jsCallBack completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//             if (error) {
-//                 NSLog(@"err is %@", error.domain);
-//             }
-//         }];
-//       }
-//}
+#pragma mark - WKScriptMessageHandler
+
+/*! @abstract Invoked when a script message is received from a webpage.
+ @param userContentController The user content controller invoking the
+ delegate method.
+ @param message The script message received.
+ */
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message; {
+     if ([message.name isEqualToString:@"btnClick"]) {
+            NSDictionary *jsData = message.body;
+            NSLog(@"%@ - %@", message.name, jsData);
+
+
+         NSString *jsCallBack = @"var demo  = document.getElementById(\"demo\");\
+                              demo.innerHTML = \"test2222222222222222222Data\";";
+         //执行回调
+         [self.webView evaluateJavaScript:jsCallBack completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+             if (error) {
+                 NSLog(@"err is %@", error.domain);
+             }
+         }];
+       }
+}
 #pragma mark - delegate
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -125,7 +125,9 @@
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
-
-
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
+    
+    
+}
 
 @end

@@ -20,7 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UILabel *label = [[UILabel alloc]initWithFrame:self.view.bounds];
+    label.text = @"点触页面跳转web";
+    [self.view addSubview:label];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

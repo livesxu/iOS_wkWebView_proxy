@@ -8,16 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
-
-@interface ViewController : UIViewController{
-
-}
-
-
-@property (nonatomic, strong) UIView *textView;
-
-- (void)test;
+@interface ViewController : UIViewController
 
 @end
 
